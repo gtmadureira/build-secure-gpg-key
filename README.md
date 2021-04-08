@@ -1,14 +1,15 @@
 # Build a secure GPG Key
 
+[web page mode](https://gtmadureira.github.io/build-secure-gpg-key/)
 Start build new keypair...
 
-For this purpose, i recommanded you to boot on [tails](https://tails.boum.org) and stay offline, tails linux contain many good thing like [onion share](https://onionshare.org/), a persistant encrypted volume, and many other things.
+For this purpose, I recommanded you to boot on [tails](https://tails.boum.org) and stay offline, tails linux contain many good things like [onion share](https://onionshare.org/), a persistant encrypted volume, and many others.
 
 ## Gen new keys (with only C|capability flag)
 
     $ gpg --expert --full-generate-key
 
-You can choose to create a RSA, ECC keys, procedure is the same, for this wiki, i create an ECC key.
+You can choose to create a RSA, ECC keys, procedure is the same, for this wiki, I create an ECC key.
 
 ```txt
 Please select what kind of key you want:
@@ -385,7 +386,7 @@ That's it.
 
 ## When subkeys expire.
 
-When key expire, boot on `tails`, import the real secret key and enhance time of 6 month again,
+When key expire, boot on `tails`, import the real secret key and enhance time of 6 months again,
 The procedure is a bit repetitive...
 
     $ tar -xvf alice_master_keys.tar 
