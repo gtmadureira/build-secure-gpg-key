@@ -1,6 +1,6 @@
 # Build a secure GPG Key
 
-[web page mode](https://gtmadureira.github.io/build-secure-gpg-key/)
+[web page mode](https://gtmadureira.github.io/build-secure-gpg-key/)<br/>
 Start build new keypair...
 
 For this purpose, I recommanded you to boot on [tails](https://tails.boum.org) and stay offline, tails linux contain many good things like [onion share](https://onionshare.org/), a persistant encrypted volume, and many others.
