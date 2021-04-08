@@ -85,7 +85,7 @@ Now, we will create subkey for signing (S), encrypt (E) and authentificate (A).
 
     $ gpg --expert --edit-key alice
 
-```
+```txt
 gpg> addkey
   (11) ECC (set your own capabilities)
 Your selection? 11
@@ -169,7 +169,7 @@ Your key has been create, we will create a revocation certificate in case where 
 
     $ gpg --generate-revocation alice > revocation.cert
 
-```
+```txt
 Create a revocation certificate for this key? (y/N) y
 Please select the reason for the revocation:
   0 = No reason specified
@@ -233,7 +233,7 @@ Verify than the master signing key is missing (contain `sec#`):
 
     $ gpg -K
 
-```
+```txt
 sec#  ed25519/0x<key id> 2018-12-13 [C] [expire : 2023-12-12]
 Fingerprint of key  = 346E BDED 037B 1949 013D  3576 0F15 D984 5548 7B76
 uid                  [ unknown ] Alice <alice@protonmail.com>
@@ -271,7 +271,7 @@ Trust ultimate on your keys
 
     $ gpg --edit-key alice
 
-```
+```txt
 > trust
 > 5 = I trust ultmately
 > save
@@ -285,7 +285,7 @@ To use our key, we have to edit `gpg.conf`.
 
 note ID of our subkey with [S] and [E], we need for configure gpg.conf, in this example:
 
-```
+```txt
 ...
 ssb   rsa4096/0x123F234555FFF3FA 2017-02-25 [S] [expire : 2017-08-24]
 ssb   rsa4096/0x65FFBB38E24C1BFB 2017-02-25 [E] [expire : 2017-08-24]
@@ -293,7 +293,7 @@ ssb   rsa4096/0x65FFBB38E24C1BFB 2017-02-25 [E] [expire : 2017-08-24]
 ```
     $ vim ~/.gnupg/gpg.conf
 
-```
+```txt
 # flag S
 default-key 0x123F234555FFF3FA
 # flag E
@@ -309,8 +309,10 @@ If you need share key with friend or post on the web, generate a file like this:
 You have to search your key ID, this is a last 8 fingerprint character, `55487B76` here.
 
     $ gpg -k
-      Fingerprint of key  = 346E BDED 037B 1949 013D  3576 0F15 D984 5548 7B76
-
+    
+```txt
+Fingerprint of key  = 346E BDED 037B 1949 013D  3576 0F15 D984 5548 7B76
+```
     $ gpg --keyserver sks.keyservers.net --send-keys 55487B76
 
 When people search your key, they type that:
@@ -330,7 +332,7 @@ So, you have to boot on tails.
     $ gpg --import alice*.key
     $ gpg --edit-key alice
 
-```
+```txt
 > list
 > key 1
 > key 2
@@ -362,7 +364,7 @@ And on other devices which use your key.
     $ gpg --import revoked_keys.asc
     $ gpg --edit-key alice
 
-```
+```txt
 ...
 pub  rsa4096/0x0FF123FF123FF123 2017-02-25 [C] [expire : 2019-02-25]
 ...
@@ -394,7 +396,7 @@ The procedure is a bit repetitive...
     $ gpg --armor --import alice_public.key
     $ gpg --edit-key alice
     
-```
+```txt
 > key 1
 > key 2
 > key 3
@@ -429,7 +431,7 @@ Trust:
     
     $ gpg --edit-key alice
 
-```
+```txt
 > trust
 > 5 ultime
 > save
