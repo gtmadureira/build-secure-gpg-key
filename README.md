@@ -1,6 +1,6 @@
-### Build a secure GPG key
+# Build a secure GPG Key
 
-Start build new keypair.
+Start build new keypair...
 
 For this purpose, i recommanded you to boot on [tails](https://tails.boum.org) and stay offline, tails linux contain many good thing like [onion share](https://onionshare.org/), a persistant encrypted volume, and many other things.
 

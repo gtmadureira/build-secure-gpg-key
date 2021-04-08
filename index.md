@@ -1,4 +1,4 @@
-### Build a secure GPG key
+# Build a secure GPG key
 
 Start build new keypair.
 
