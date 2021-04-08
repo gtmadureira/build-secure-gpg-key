@@ -3,7 +3,7 @@
 [web page mode](https://gtmadureira.github.io/build-secure-gpg-key/)<br/><br/>
 Start build new keypair...
 
-For this purpose, I recommanded you to boot on [tails](https://tails.boum.org) and stay offline, tails linux contain many good things like [onion share](https://onionshare.org/), a persistant encrypted volume, and many others.
+For this purpose, I recommend you to boot on [tails](https://tails.boum.org) and stay offline, tails linux contain many good things like [onion share](https://onionshare.org/), a persistant encrypted volume, and many others.
 
 ## Gen new keys (with only C|capability flag)
 
@@ -81,7 +81,7 @@ gpg> save
 
 ## Add subkeys (S|E|A)
 
-Now, we will create subkey for signing (S), encrypt (E) and authentificate (A).
+Now, we will create subkey for signing (S), encrypt (E) and authenticate (A).
 
     $ gpg --expert --edit-key alice
 
@@ -113,7 +113,7 @@ Key is valid for? 6m
 Is this correct? y
 Really create? y 
 
-> addkey (last for authentification)
+> addkey (last for authentication)
   (11) ECC (set your own capabilities)
 Your selection? 11
 Current allowed actions: Sign
@@ -255,7 +255,7 @@ You can make an archive too.
 
 ## Import lesser keys
 
-If you are on tails linux, you can send this archive with [onion share](https://onionshare.org/), it's will generate an url with `.onion`. The service will automaticaly stop when archive is downloaded. To do this on tails:
+If you are on tails linux, you can send this archive with [onion share](https://onionshare.org/), it's will generate an url with `.onion`. The service will automatically stop when archive is downloaded. To do this on tails:
 
 Go to Places -> Home, right click on `alice-lesser-keys.tar` and select `Share with OnionShare`.  
 So, OnionShare is open, click on `Start sharing`, it generate an url and rename archive.
@@ -273,7 +273,7 @@ Trust ultimate on your keys
 
 ```txt
 > trust
-> 5 = I trust ultmately
+> 5 = I trust ultimately
 > save
 ```
 
@@ -433,7 +433,7 @@ Trust:
 
 ```txt
 > trust
-> 5 ultime
+> 5 ultimate
 > save
 ```
 
