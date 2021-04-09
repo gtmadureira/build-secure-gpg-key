@@ -458,7 +458,7 @@ Clean the `subkeys` file:
 
     $ shred -u subkeys
 
-Verify than the master signing key is missing (contain `sec#`):
+Verify than the master certifying key is missing (contain `sec#`):
 
     $ gpg -K
 
