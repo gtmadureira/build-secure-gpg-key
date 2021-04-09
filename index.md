@@ -616,13 +616,14 @@ When people search your key, they type that:
     $ gpg --keyserver hkps://keys.openpgp.org --search-keys elliot_alderson@protonmail.com
     
 ```txt
+...
+
 gpg: data source: https://keys.openpgp.org:443
 (1)	Elliot Alderson <elliot_alderson@protonmail.com>
 	  263 bit EDDSA key 5E90D54315BAD590, created: 2021-04-08
 Keys 1-1 of 1 for "elliot_alderson@protonmail.com".  Enter number(s), N)ext, or Q)uit > 1
-gpg: key 5E90D54315BAD590: "Elliot Alderson <elliot_alderson@protonmail.com>" not changed
-gpg: Total number processed: 1
-gpg:              unchanged: 1
+
+...
 ```
 
 If the list contains many key, you have to compare the fingerprint.
