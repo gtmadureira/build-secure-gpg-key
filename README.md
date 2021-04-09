@@ -5,7 +5,7 @@ Start build new keypair...
 
 For this purpose, I recommend you to boot on [tails](https://tails.boum.org) and stay offline, tails linux contain many good things like [onion share](https://onionshare.org/), a persistant encrypted volume, and many others.
 
-## Generate new Keys (with only C|capability flag)
+## Generate new Key (with only C|capability flag)
 
     $ gpg --expert --full-generate-key
 
@@ -52,7 +52,7 @@ Current allowed actions: Certify
 
 Your selection? Q
 ```
-Next we select a strong cipher, Curve 25519 or RSA 4096:
+Next we select a strong and safe curve for elliptic-curve. I chose the `Curve 25519`:
 
 ```txt
 Please select which elliptic curve you want:
@@ -151,7 +151,7 @@ sec  ed25519/5E90D54315BAD590
 gpg> save
 ```
 
-## Add subkeys (S|E|A)
+## Add Subkeys (S|E|A)
 
 Now, we will create subkey for signing (S), encrypt (E) and authenticate (A):
 
@@ -375,7 +375,7 @@ Save our work:
 gpg> save
 ```
 
-## Revocation cert
+## Revocation Cert
 
 Your key has been create, we will create a revocation certificate in case where key is compromised:
 
@@ -480,7 +480,7 @@ You can make an archive too:
 
     $ tar -cf elliot_alderson@protonmail.com_lesser_keys.tar elliot*.key
 
-## Import lesser keys
+## Import lesser Keys
 
 If you are on tails linux, you can send this archive with [onion share](https://onionshare.org/), it's will generate an url with `.onion`. The service will automatically stop when archive is downloaded. To do this on tails:
 
@@ -557,7 +557,7 @@ unless you restart the program.
 gpg> save
 ```
 
-# Set our primary key
+# Set our Primary Key
 
 To use our key, we have to edit `gpg.conf`:
 
@@ -589,7 +589,7 @@ If you need share key with friend or post on the web, generate a file like this:
 
     $ gpg --armor --output key.txt --export elliot_alderson@protonmail.com
 
-## Send key to `keyserver.sks`
+## Send Keys to `https://keys.openpgp.org` server
 
 You have to search your key ID, this is a last 8 fingerprint character, `15BAD590` here:
 
@@ -716,7 +716,7 @@ You have to send each subkeys to `https://keys.openpgp.org`:
 
 That's it.
 
-## When subkeys expire.
+## When Subkeys expire
 
 When key expire, boot on `tails`, import the real secret key and enhance time of 6 months again,
 The procedure is a bit repetitive... :
