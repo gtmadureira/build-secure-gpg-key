@@ -3,7 +3,7 @@
 [by Gustavo Madureira](https://gtmadureira.github.io/)<br/><br/>
 Start build new keypair...
 
-For this purpose, I recommend you to boot on [tails](https://tails.boum.org) and stay offline, tails linux contain many good things like [onion share](https://onionshare.org/), a persistant encrypted volume, and many others.
+For this purpose, I recommend you to boot on [Tails](https://tails.boum.org) and stay offline, Tails Linux contain many good things like [OnionShare](https://onionshare.org/), a persistant encrypted volume, and many others.
 
 ## Generate new Key (with only C|capability flag)
 
@@ -484,7 +484,7 @@ You can make an archive too:
 
 ## Import lesser Keys
 
-If you are on tails linux, you can send this archive with [onion share](https://onionshare.org/), it's will generate an url with `.onion`. The service will automatically stop when archive is downloaded. To do this on tails:
+If you are on Tails Linux, you can send this archive with [OnionShare](https://onionshare.org/), it's will generate an url with `.onion`. The service will automatically stop when archive is downloaded. To do this on Tails:
 
 Go to Places -> Home, right click on `elliot_alderson@protonmail.com_lesser_keys.tar` and select `Share with OnionShare`.  
 So, OnionShare is open, click on `Start sharing`, it generate an url and rename archive.
@@ -632,7 +632,7 @@ If the list contains many key, you have to compare the fingerprint.
 
 If we have steal your device, we must send a certificate because of course, we are the only ones to have the secret key.
 
-So, you have to boot on tails:
+So, you have to boot on Tails:
 
     $ tar -xvf elliot_alderson@protonmail.com_master_keys.tar
     $ gpg --import elliot*.key
@@ -720,7 +720,7 @@ That's it.
 
 ## When Subkeys expire
 
-When key expire, boot on `tails`, import the real secret key and enhance time of 6 months again,
+When key expire, boot on `Tails`, import the real secret key and enhance time of 6 months again,
 The procedure is a bit repetitive... :
 
     $ tar -xvf elliot_alderson@protonmail.com_master_keys.tar 
