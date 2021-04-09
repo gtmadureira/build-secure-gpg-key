@@ -90,8 +90,8 @@ You selected this USER-ID:
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
 You need a Passphrase to protect your secret key
 
-    *** Enter passphrase: <Alice's long passphrase> ***
-    *** Repeat passphrase: <Alice's long passphrase> ***
+    *** Enter passphrase: <Elliot Alderson's long passphrase> ***
+    *** Repeat passphrase: <Elliot Alderson's long passphrase> ***
     
 We need to generate a lot of random bytes. It is a good idea to perform
 some other action (type on the keyboard, move the mouse, utilize the
