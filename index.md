@@ -435,10 +435,10 @@ Now, we have all necessary files, delete original key from actual system:
 
 Press *Delete key* for each subkeys.
 
-Control than output of `gpg -K` and `gpg -k` do not containt our keys:
+Control than output of `gpg --list-secret-keys` and `gpg --list-keys` do not containt our keys:
 
-    $ gpg -K
-    $ gpg -k
+    $ gpg --list-secret-keys
+    $ gpg --list-keys
 
 Now, we will create a lesser keys with less privilege by reimport our `subkeys` file:
 
@@ -460,7 +460,7 @@ Clean the `subkeys` file:
 
 Verify than the master certifying key is missing (contain `sec#`):
 
-    $ gpg -K
+    $ gpg --list-secret-keys
 
 ```txt
 sec#  ed25519 2021-04-08 [C] [expires: 2023-04-08]
