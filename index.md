@@ -91,6 +91,7 @@ Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
 You need a Passphrase to protect your secret key
 
     *** Enter passphrase: <Elliot Alderson's long passphrase> ***
+    
     *** Repeat passphrase: <Elliot Alderson's long passphrase> ***
     
 We need to generate a lot of random bytes. It is a good idea to perform
@@ -138,9 +139,10 @@ Set preference list to:
      Features: MDC, Keyserver no-modify
 Really update the preferences? (y/N) y
 
-*** You need a passphrase to unlock the secret key for ***
+  *** You need a passphrase to unlock the secret key for ***
+  
   *** user: "Elliot Alderson <elliot_alderson@protonmail.com>" ***
-
+  
   *** Enter passphrase: <Elliot Alderson long passphrase> ***
 
 sec  ed25519/5E90D54315BAD590
