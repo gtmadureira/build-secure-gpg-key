@@ -5,11 +5,11 @@ Start build new keypair...
 
 For this purpose, I recommend you to boot on [tails](https://tails.boum.org) and stay offline, tails linux contain many good things like [onion share](https://onionshare.org/), a persistant encrypted volume, and many others.
 
-## Gen new keys (with only C|capability flag)
+## Generate new Keys (with only C|capability flag)
 
     $ gpg --expert --full-generate-key
 
-You can choose to create a RSA, ECC keys, procedure is the same, for this wiki, I create an ECC key.
+You can choose to create a RSA, ECC keys, procedure is the same, for this wiki, I create an ECC key:
 
 ```txt
 gpg (GnuPG) 2.2.19; Copyright (C) 2019 Free Software Foundation, Inc.
@@ -31,7 +31,7 @@ Please select what kind of key you want:
 Your selection? 11
 ```
 
-Next we remove Sign and Authenticate capability, keep only Certify.
+Next we remove Sign and Authenticate capability, keep only Certify:
 
 ```txt
 Possible actions for a ECDSA/EdDSA key: Sign Certify Authenticate 
@@ -52,7 +52,7 @@ Current allowed actions: Certify
 
 Your selection? Q
 ```
-Next we select a strong cipher, Curve 25519 or RSA 4096.
+Next we select a strong cipher, Curve 25519 or RSA 4096:
 
 ```txt
 Please select which elliptic curve you want:
@@ -76,7 +76,7 @@ Key expires at Sat 08 Apr 2023 01:29:17 PM -03
 Is this correct? (y/N) y
 ```
 
-And choose bellow an email address active with your name.
+And choose bellow an email address active with your name:
 
 ```txt
 GnuPG needs to construct a user ID to identify your key.
@@ -153,7 +153,7 @@ gpg> save
 
 ## Add subkeys (S|E|A)
 
-Now, we will create subkey for signing (S), encrypt (E) and authenticate (A).
+Now, we will create subkey for signing (S), encrypt (E) and authenticate (A):
 
     $ gpg --expert --edit-key elliot_alderson@protonmail.com
 
@@ -369,7 +369,7 @@ ssb  ed25519/E202997C77B7C45E
 [ultimate] (1). Elliot Alderson <elliot_alderson@protonmail.com>
 ```
 
-Save our work.
+Save our work:
 
 ```txt
 gpg> save
@@ -377,7 +377,7 @@ gpg> save
 
 ## Revocation cert
 
-Your key has been create, we will create a revocation certificate in case where key is compromised.
+Your key has been create, we will create a revocation certificate in case where key is compromised:
 
     $ gpg --generate-revocation elliot_alderson@protonmail.com > revocation.cert
 
@@ -409,35 +409,36 @@ your machine might store the data and make it available to others!
 ```
 ## Backups into Tar archive
 
-Backup your fresh key.
+Backup your fresh key:
 
     $ gpg --armor --export-secret-keys elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_secret.key
     $ gpg --armor --export elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_public.key
 
-Make a tar file
+Make a tar file:
 
     $ tar -cf elliot_alderson@protonmail.com_master_keys.tar elliot*.key revocation.cert
 
-Delete useless file.
+Delete useless file:
 
     $ shred -u elliot*.key revocation.cert
 
-Export all subkeys too temporary, we reimport soon.
+Export all subkeys too temporary, we reimport soon:
 
     $ gpg --export-secret-subkeys elliot_alderson@protonmail.com > subkeys
 
-Now, we have all necessary files, delete original key from actual system.
+Now, we have all necessary files, delete original key from actual system:
 
     $ gpg --delete-secret-keys elliot_alderson@protonmail.com
     $ gpg --delete-keys elliot_alderson@protonmail.com
 
-Press *Delete key* for each subkeys. 
-Control than output of `gpg -K` and `gpg -k` do not containt our keys.
+Press *Delete key* for each subkeys.
+
+Control than output of `gpg -K` and `gpg -k` do not containt our keys:
 
     $ gpg -K
     $ gpg -k
 
-Now, we will create a lesser keys with less privilege by reimport our `subkeys` file.
+Now, we will create a lesser keys with less privilege by reimport our `subkeys` file:
 
     $ gpg --import subkeys
 
@@ -451,7 +452,7 @@ gpg:       secret keys read: 1
 gpg:   secret keys imported: 1
 ```
 
-Clean the `subkeys` file.
+Clean the `subkeys` file:
 
     $ shred -u subkeys
 
@@ -470,12 +471,12 @@ ssb   ed25519 2021-04-08 [A] [expires: 2021-10-05]
 
 The first line with 'sec#' means that the secret key is not usable (you cannot create revocation certificate, change password with this key and other things).
 
-Export this lesser key which will be used on all other devices.
+Export this lesser key which will be used on all other devices:
 
     $ gpg --armor --export-secret-keys elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_secret_lesser.key
     $ gpg --armor --export elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_public_lesser.key
 
-You can make an archive too.
+You can make an archive too:
 
     $ tar -cf elliot_alderson@protonmail.com_lesser_keys.tar elliot*.key
 
@@ -493,7 +494,7 @@ To import lesser key on other devices:
     $ gpg --armor --import elliot_alderson@protonmail.com_public_lesser.key
     $ shred -u elliot*.key
 
-Trust ultimate on your keys
+Trust ultimate on your keys:
 
     $ gpg --edit-key elliot_alderson@protonmail.com
 
@@ -558,11 +559,11 @@ gpg> save
 
 # Set our primary key
 
-To use our key, we have to edit `gpg.conf`.
+To use our key, we have to edit `gpg.conf`:
 
     $ gpg --list-secret-keys --with-subkey-fingerprints
 
-note fingerprint of our subkey with [S] and [E], we need for configure gpg.conf, in this example:
+Note fingerprint of our subkey with [S] and [E], we need for configure gpg.conf, in this example:
 
 ```txt
 sec#  ed25519 2021-04-08 [C] [expires: 2023-04-08]
@@ -590,7 +591,7 @@ If you need share key with friend or post on the web, generate a file like this:
 
 ## Send key to `keyserver.sks`
 
-You have to search your key ID, this is a last 8 fingerprint character, `15BAD590` here.
+You have to search your key ID, this is a last 8 fingerprint character, `15BAD590` here:
 
     $ gpg --list-keys --with-fingerprint
     
@@ -603,7 +604,8 @@ sub   cv25519 2021-04-08 [E] [expires: 2021-10-05]
 sub   ed25519 2021-04-08 [A] [expires: 2021-10-05]
 ```
 Keys can be uploaded with GnuPG's `--send-keys` command, but identity information can't be verified that way to make the key searchable by email address ([what does this mean?](https://keys.openpgp.org/about)).
-VERY IMPORTANT! >>> After sending your public keys to the server, with command line below, you will receive an email at `elliot_alderson@protonmail.com`, where you need to do the process of verifying the publication(input) of the public keys in the server. If you don't, your public keys will not enter the server!
+
+VERY IMPORTANT! >>> After sending your public keys to the server, with command line below, you will receive an email at `elliot_alderson@protonmail.com`, where you need to do the process of verifying the publication(input) of the public keys in the server. If you don't, your public keys will not enter the server!:
 
     $ gpg --keyserver https://keys.openpgp.org --send-keys 15BAD590
 
@@ -628,7 +630,7 @@ If the list contains many key, you have to compare the fingerprint.
 
 If we have steal your device, we must send a certificate because of course, we are the only ones to have the secret key.
 
-So, you have to boot on tails.
+So, you have to boot on tails:
 
     $ tar -xvf elliot_alderson@protonmail.com_master_keys.tar
     $ gpg --import elliot*.key
@@ -672,11 +674,11 @@ ssb  ed25519/E202997C77B7C45E
 gpg> save
 ```
 
-Export certificate for our other device.
+Export certificate for our other device:
 
     $ gpg --armor --export > revoked_keys.asc
 
-And on other devices which use your key.
+And on other devices which use your key:
 
     $ gpg --import revoked_keys.asc
     $ gpg --edit-key elliot_alderson@protonmail.com
@@ -705,7 +707,7 @@ ssb  ed25519/E202997C77B7C45E
 gpg> quit
 ```
 
-You have to send each subkeys to `https://keys.openpgp.org`
+You have to send each subkeys to `https://keys.openpgp.org`:
 
     $ gpg --keyserver https://keys.openpgp.org --send-keys DCD6B1841F15BC99
     $ gpg --keyserver https://keys.openpgp.org --send-keys 98378D667B77DC3D
@@ -717,7 +719,7 @@ That's it.
 ## When subkeys expire.
 
 When key expire, boot on `tails`, import the real secret key and enhance time of 6 months again,
-The procedure is a bit repetitive...
+The procedure is a bit repetitive... :
 
     $ tar -xvf elliot_alderson@protonmail.com_master_keys.tar 
     $ gpg --armor --import elliot_alderson@protonmail.com_secret.key
@@ -733,7 +735,7 @@ gpg> 6m
 gpg> save
 ```
 
-And re-do the same thing than before...(yaaa)
+And re-do the same thing than before...(yaaa):
 
     $ gpg --armor --export-secret-keys --armor elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_secret.key
     $ gpg --armor --export --armor elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_public.key
@@ -749,7 +751,7 @@ And re-do the same thing than before...(yaaa)
     $ tar -cf elliot_alderson@protonmail.com_lesser_keys.tar elliot*.key
     $ shred -u elliot*.key
 
-On your laptop, you have to remove older key and reimport the new.
+On your laptop, you have to remove older key and reimport the new:
 
     $ gpg --delete-keys elliot_alderson@protonmail.com
     $ tar -xvf elliot_alderson@protonmail.com_lesser_keys.tar
