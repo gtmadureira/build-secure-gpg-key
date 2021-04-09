@@ -141,7 +141,7 @@ Really update the preferences? (y/N) y
 
   *** You need a passphrase to unlock the secret key for ***
   
-  *** user: "Elliot Alderson <elliot_alderson@protonmail.com>" ***
+  *** User: "Elliot Alderson <elliot_alderson@protonmail.com>" ***
 
   *** Enter passphrase: <Elliot Alderson's long passphrase> ***
 
