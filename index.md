@@ -143,7 +143,7 @@ Really update the preferences? (y/N) y
   
   *** user: "Elliot Alderson <elliot_alderson@protonmail.com>" ***
   
-  *** Enter passphrase: <Elliot Alderson long passphrase> ***
+  *** Enter passphrase: <Elliot Alderson's long passphrase> ***
 
 sec  ed25519/5E90D54315BAD590
      created: 2021-04-08  expires: 2023-04-08  usage: C   
