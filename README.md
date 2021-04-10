@@ -740,8 +740,8 @@ gpg> save
 
 And re-do the same thing than before...(yaaa):
 
-    $ gpg --armor --export-secret-keys --armor elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_secret.key
-    $ gpg --armor --export --armor elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_public.key
+    $ gpg --armor --export-secret-keys elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_secret.key
+    $ gpg --armor --export elliot_alderson@protonmail.com > elliot_alderson@protonmail.com_public.key
     $ gpg --generate-revocation elliot_alderson@protonmail.com > revocation.cert
     $ tar -cf elliot_alderson@protonmail.com_master_keys.tar elliot*.key revocation.cert
     $ shred -u elliot*.key revocation.cert
