@@ -52,6 +52,7 @@ Current allowed actions: Certify
 
 Your selection? Q
 ```
+
 Next we select a strong and safe curve for elliptic-curve. I chose the `Curve 25519`:
 
 ```txt
@@ -106,6 +107,7 @@ pub   ed25519 2021-04-08 [C] [expires: 2023-04-08]
       776B6C5DC848C224DF05E6505E90D54315BAD590
 uid                      Elliot Alderson <elliot_alderson@protonmail.com>
 ```
+
 If need help to create a secure password, try the [diceware](https://theintercept.com/2015/03/26/passphrases-can-memorize-attackers-cant-guess/) method.
 
 ## Change ciphers
@@ -409,6 +411,7 @@ It is smart to print this certificate and store it away, just in case
 your media become unreadable.  But have some caution:  The print system of
 your machine might store the data and make it available to others!
 ```
+
 ## Backups into Tar archive
 
 Backup your fresh key:
@@ -578,6 +581,7 @@ ssb   cv25519 2021-04-08 [E] [expires: 2021-10-05]
 ssb   ed25519 2021-04-08 [A] [expires: 2021-10-05]
       142C216B40F4B31B09AA9EAEE202997C77B7C45E
 ```
+
     $ vim ~/.gnupg/gpg.conf
 
 ```txt
@@ -591,9 +595,9 @@ If you need share key with friend or post on the web, generate a file like this:
 
     $ gpg --armor --output key.txt --export elliot_alderson@protonmail.com
 
-## Send Keys to `https://keys.openpgp.org` server
+## Sending Keys to `https://keys.openpgp.org` server
 
-You have to search your key ID, this is a last 8 fingerprint character, `15BAD590` here:
+You have to search your key ID, this is a last 8 fingerprint characters, `15BAD590` here:
 
     $ gpg --list-keys --with-fingerprint
     
@@ -605,11 +609,29 @@ sub   ed25519 2021-04-08 [S] [expires: 2021-10-05]
 sub   cv25519 2021-04-08 [E] [expires: 2021-10-05]
 sub   ed25519 2021-04-08 [A] [expires: 2021-10-05]
 ```
+
 Keys can be uploaded with GnuPG's `--send-keys` command, but identity information can't be verified that way to make the key searchable by email address ([what does this mean?](https://keys.openpgp.org/about)).
 
-VERY IMPORTANT! >>> After sending your public keys to the server, with command line below, you will receive an email at `elliot_alderson@protonmail.com`, where you need to do the process of verifying the publication(input) of the public keys in the server. If you don't, your public keys will not enter the server!:
+VERY IMPORTANT! >>>>>> After sending your public key to the server, with command line below, you will receive a link of verification page by email at `elliot_alderson@protonmail.com`, where you need to do the process of verifying the publication(input) of public key in the server. If you don't, your public key will not enter the server!:
 
     $ gpg --keyserver https://keys.openpgp.org --send-keys 15BAD590
+    
+Or, you can try this shortcut for uploading your key, which outputs a direct link to the verification page:
+
+    $ gpg --export elliot_alderson@protonmail.com | curl -T - https://keys.openpgp.org
+    
+```txt
+Key successfully uploaded. Proceed with verification here:
+https://keys.openpgp.org/upload/..........................
+
+*** (link to verification page, open in your web browser) ***
+```
+
+And, alternatively, you can export them to a file and select that file in the [upload](https://keys.openpgp.org/upload) page:
+
+    $ gpg --export elliot_alderson@protonmail.com > elliot_alderson@protonmail.com.pub
+    
+## Retrieving Keys from `https://keys.openpgp.org` server
 
 When people search your key, they type that:
 
@@ -620,7 +642,7 @@ When people search your key, they type that:
 
 gpg: data source: https://keys.openpgp.org:443
 (1)	Elliot Alderson <elliot_alderson@protonmail.com>
-	  263 bit EDDSA key 5E90D54315BAD590, created: 2021-04-08
+	  256 bit EDDSA key 5E90D54315BAD590, created: 2021-04-08
 Keys 1-1 of 1 for "elliot_alderson@protonmail.com".  Enter number(s), N)ext, or Q)uit > 1
 
 ...
@@ -628,6 +650,15 @@ Keys 1-1 of 1 for "elliot_alderson@protonmail.com".  Enter number(s), N)ext, or 
 
 If the list contains many key, you have to compare the fingerprint.
 
+To refresh all your keys (e.g. new revocation certificates and subkeys):
+
+    $ gpg --refresh-keys --keyserver hkps://keys.openpgp.org
+
+## Usage via Tor
+
+For users who want to be extra careful, **keys.openpgp.org** can be reached anonymously as an [onion service](https://support.torproject.org/onionservices/#onionservices-2). If you have [Tor](https://www.torproject.org/) installed, use the following configuration:
+
+    $ --keyserver hkp://zkaan2xfbuxia2wpf7ofnkbz6r5zdbbvxbunvp5g2iebopbfc4iqmbad.onion
 
 ## When you are compromised
 
@@ -773,5 +804,17 @@ Trust:
 ```
 
 ### Troubleshooting
+
+Some old ~/gnupg/dirmngr.conf files contain a line like this:
+
+    $ hkp-cacert ~/.gnupg/sks-keyservers.netCA.pem
+    
+This configuration is no longer necessary, but prevents regular certificates from working. It is recommended to simply remove this line from the configuration.
+
+While refreshing keys, you may see errors like the following:
+
+    $ gpg: key A2604867523C7ED8: no user ID
+    
+This is a [known problem in GnuPG](https://dev.gnupg.org/T4393). We are working with the GnuPG team to resolve this issue.
 
 Post an issue to [github](https://github.com/gtmadureira/build-secure-gpg-key/issues)
